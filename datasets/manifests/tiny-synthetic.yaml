@@ -1,0 +1,36 @@
+{
+  "dataset_id": "tiny-synthetic",
+  "version": "0.1.0",
+  "languages": [
+    "eng",
+    "sna",
+    "nde",
+    "eng-sna-codeswitch",
+    "eng-nde-codeswitch"
+  ],
+  "task": "retrieval",
+  "domains": [
+    "agriculture",
+    "customer-support",
+    "education",
+    "financial-services",
+    "mobile-payments",
+    "public-information",
+    "technology-support",
+    "telecommunications"
+  ],
+  "splits": {
+    "test": 13
+  },
+  "license": "CC0-1.0",
+  "citation": "ZimMTEB contributors, synthetic infrastructure fixture v0.1.0",
+  "source": "original AI-drafted fixture; no external dataset incorporated",
+  "creation_method": "synthetic",
+  "human_review_level": "unreviewed",
+  "number_of_samples": 13,
+  "checksum": "aaa7303c3cab917c70d9967a0f2f7af61351fbef0e012fde121411aa855b3566",
+  "creation_date": "2026-09-20",
+  "benchmark_version": "0.1.0",
+  "documents": "../tiny-synthetic/documents.jsonl",
+  "queries": "../tiny-synthetic/queries.jsonl"
+}

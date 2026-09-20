@@ -1,0 +1,15 @@
+{
+  "code": "eng-sna-codeswitch",
+  "name": "English\u2013Shona code-switching",
+  "alternate_names": [],
+  "scripts": [
+    "Latn"
+  ],
+  "tokenizer_considerations": "Preserve Unicode and punctuation; audit subword fragmentation and truncation by track.",
+  "benchmark_availability": "synthetic fixture only",
+  "notes": "Track identifier, not an ISO language code.",
+  "code_switch_partners": [
+    "eng",
+    "sna"
+  ]
+}

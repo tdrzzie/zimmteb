@@ -1,0 +1,6 @@
+{
+  "device": "cpu",
+  "batch_size": 8,
+  "precision": "float32",
+  "notes": "Portable first run; PyTorch CPU wheels are sufficient."
+}

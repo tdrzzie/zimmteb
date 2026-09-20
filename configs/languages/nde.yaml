@@ -1,0 +1,14 @@
+{
+  "code": "nde",
+  "name": "isiNdebele (Northern Ndebele)",
+  "alternate_names": [
+    "Zimbabwean Ndebele"
+  ],
+  "scripts": [
+    "Latn"
+  ],
+  "tokenizer_considerations": "Preserve Unicode and punctuation; audit subword fragmentation and truncation by track.",
+  "benchmark_availability": "synthetic fixture only",
+  "notes": "ISO 639-3 nde; do not substitute Southern Ndebele nbl or Zulu zul.",
+  "code_switch_partners": []
+}

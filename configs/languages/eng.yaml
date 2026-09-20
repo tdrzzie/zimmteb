@@ -1,0 +1,14 @@
+{
+  "code": "eng",
+  "name": "Zimbabwean English",
+  "alternate_names": [
+    "English"
+  ],
+  "scripts": [
+    "Latn"
+  ],
+  "tokenizer_considerations": "Preserve Unicode and punctuation; audit subword fragmentation and truncation by track.",
+  "benchmark_availability": "synthetic fixture only",
+  "notes": "Zimbabwean usage is a data dimension, not a separate ISO code.",
+  "code_switch_partners": []
+}

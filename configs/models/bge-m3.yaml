@@ -1,0 +1,16 @@
+{
+  "id": "bge-m3",
+  "adapter": "sentence-transformers",
+  "model_name": "BAAI/bge-m3",
+  "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "license": "mit",
+  "license_url": "https://huggingface.co/BAAI/bge-m3/blob/5617a9f61b028005a4858fdac845db406aefb181/README.md",
+  "query_prefix": "",
+  "document_prefix": "",
+  "normalize": true,
+  "max_length": 128,
+  "batch_size": 8,
+  "precision": "float32",
+  "trust_remote_code": false,
+  "notes": "Dense mode only; large baseline, not first smoke run."
+}

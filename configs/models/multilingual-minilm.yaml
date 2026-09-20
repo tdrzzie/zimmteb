@@ -1,0 +1,16 @@
+{
+  "id": "multilingual-minilm",
+  "adapter": "sentence-transformers",
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+  "license": "apache-2.0",
+  "license_url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/blob/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md",
+  "query_prefix": "",
+  "document_prefix": "",
+  "normalize": true,
+  "max_length": 128,
+  "batch_size": 8,
+  "precision": "float32",
+  "trust_remote_code": false,
+  "notes": "Compact multilingual alternative. Language list is not evidence of Northern Ndebele quality."
+}

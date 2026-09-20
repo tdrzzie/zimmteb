@@ -1,0 +1,6 @@
+{
+  "device": "cuda",
+  "batch_size": 32,
+  "precision": "float32",
+  "notes": "Manual opt-in only; no cloud provisioning."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "multilingual-e5-small",
+  "adapter": "sentence-transformers",
+  "model_name": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "license": "mit",
+  "license_url": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+  "query_prefix": "query: ",
+  "document_prefix": "passage: ",
+  "normalize": true,
+  "max_length": 128,
+  "batch_size": 8,
+  "precision": "float32",
+  "trust_remote_code": false,
+  "notes": "Small multilingual baseline; prompts follow model card."
+}

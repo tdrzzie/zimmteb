@@ -1,0 +1,9 @@
+{
+  "id": "test-hash",
+  "adapter": "test-hash",
+  "model_name": "zimmteb/test-hash",
+  "revision": "0.1.0",
+  "license": "Apache-2.0",
+  "license_url": "LICENSE",
+  "notes": "Deterministic CI fixture. Not a multilingual model or scientific baseline."
+}

@@ -1,0 +1,14 @@
+{
+  "code": "sna",
+  "name": "chiShona",
+  "alternate_names": [
+    "Shona"
+  ],
+  "scripts": [
+    "Latn"
+  ],
+  "tokenizer_considerations": "Preserve Unicode and punctuation; audit subword fragmentation and truncation by track.",
+  "benchmark_availability": "synthetic fixture only",
+  "notes": "Dialect and spelling variation require speaker review.",
+  "code_switch_partners": []
+}

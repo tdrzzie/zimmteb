@@ -1,0 +1,6 @@
+{
+  "device": "cuda",
+  "batch_size": 16,
+  "precision": "float32",
+  "notes": "8 GB VRAM target. Lower batch size on OOM; no silent CPU migration."
+}

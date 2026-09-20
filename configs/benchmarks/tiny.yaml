@@ -1,0 +1,14 @@
+{
+  "name": "ZimMTEBTinyRetrieval",
+  "version": "0.1.0",
+  "dataset": "tiny-synthetic",
+  "task": "retrieval",
+  "model": "multilingual-e5-small",
+  "device": "cpu",
+  "batch_size": 8,
+  "seed": 42,
+  "split": "test",
+  "language": null,
+  "domain": null,
+  "precision": "float32"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "afrie5",
+  "adapter": "sentence-transformers",
+  "model_name": "McGill-NLP/AfriE5-Large-instruct",
+  "revision": "0d7a51373bacc776c5f41696116c6c9100dcde72",
+  "license": "mit",
+  "license_url": "https://huggingface.co/McGill-NLP/AfriE5-Large-instruct/blob/0d7a51373bacc776c5f41696116c6c9100dcde72/README.md",
+  "query_prefix": "Instruct: Given a query, retrieve relevant passages that answer the query\nQuery: ",
+  "document_prefix": "",
+  "normalize": true,
+  "max_length": 128,
+  "batch_size": 8,
+  "precision": "float32",
+  "trust_remote_code": false,
+  "notes": "Instruction template must be kept fixed across comparison runs."
+}

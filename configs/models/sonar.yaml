@@ -1,0 +1,9 @@
+{
+  "id": "sonar",
+  "adapter": "sonar",
+  "model_name": "text_sonar_basic_encoder",
+  "revision": "UNRESOLVED-NOT-RUNNABLE",
+  "license": "CC-BY-NC-4.0",
+  "license_url": "https://github.com/facebookresearch/SONAR#license",
+  "notes": "Planned optional adapter. English and Shona in checkpoint card; Northern Ndebele absent. Source MIT; weights separately licensed."
+}
