@@ -112,6 +112,6 @@ class Manifest(StrictModel):
     def safe_relative_file(cls, value: str) -> str:
         from pathlib import PurePosixPath, PureWindowsPath
 
-        if PureWindowsPath(value).is_absolute() or PurePosixPath(value).is_absolute():
+        if PureWindowsPath(value).drive or PureWindowsPath(value).root or PurePosixPath(value).is_absolute():
             raise ValueError("Dataset paths must be relative")
         return value
