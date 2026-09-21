@@ -61,3 +61,8 @@ details, consent, affiliation, compensation promise or endorsement has been inve
 5. Expand missing coverage, then admit a sanitized reviewed version with a dataset card.
 
 No reviewed pilot can be claimed until that human work is completed.
+
+The [AI review of draft 1](ai-review-draft1.md) finds it suitable for volunteer
+review, with revisions required before benchmark admission. It records a
+code-switch metadata issue and unresolved domain, relevance and source checks;
+it supplies no human approvals.
