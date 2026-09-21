@@ -1,4 +1,5 @@
 .venv/
+venv/
 .tools/
 .research/
 __pycache__/
@@ -12,9 +13,19 @@ build/
 .cache/
 runs/
 .env
+.env.*
+!.env.example
 *.safetensors
 *.pt
+*.pth
+*.ckpt
+*.onnx
 *.bin
+/checkpoints/
+/wandb/
 coverage.xml
 .coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
 pytest-cache-files-*/
