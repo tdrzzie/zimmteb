@@ -47,7 +47,15 @@ def load_dataset(name: str = "tiny-synthetic") -> RetrievalDataset:
     docs, queries = read(manifest.documents), read(manifest.queries)
     return RetrievalDataset(
         manifest,
-        [Document.model_validate(json.loads(line)) for line in docs.decode("utf-8").splitlines() if line.strip()],
-        [Query.model_validate(json.loads(line)) for line in queries.decode("utf-8").splitlines() if line.strip()],
+        [
+            Document.model_validate(json.loads(line))
+            for line in docs.decode("utf-8").splitlines()
+            if line.strip()
+        ],
+        [
+            Query.model_validate(json.loads(line))
+            for line in queries.decode("utf-8").splitlines()
+            if line.strip()
+        ],
         checksum(docs, queries),
     )

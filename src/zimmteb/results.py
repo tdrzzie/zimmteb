@@ -39,10 +39,22 @@ class QueryResult(StrictModel):
 
     @model_validator(mode="after")
     def valid_ranking(self) -> "QueryResult":
-        if len(self.ranking) != len(self.relevance_scores) or len(set(self.ranking)) != len(self.ranking):
+        if len(self.ranking) != len(self.relevance_scores) or len(set(self.ranking)) != len(
+            self.ranking
+        ):
             raise ValueError("Ranking IDs/scores must align and be unique")
-        required = {"recall_at_1", "recall_at_5", "recall_at_10", "recall_at_20", "mrr_at_10", "ndcg_at_10", "map_at_10"}
-        if self.metrics.keys() != required or any(not 0 <= value <= 1 for value in self.metrics.values()):
+        required = {
+            "recall_at_1",
+            "recall_at_5",
+            "recall_at_10",
+            "recall_at_20",
+            "mrr_at_10",
+            "ndcg_at_10",
+            "map_at_10",
+        }
+        if self.metrics.keys() != required or any(
+            not 0 <= value <= 1 for value in self.metrics.values()
+        ):
             raise ValueError("Ranking metrics must be finite values in [0, 1]")
         if not self.ranking or not self.positive_document_ids:
             raise ValueError("Ranking and positive judgments must not be empty")

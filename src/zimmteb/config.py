@@ -30,7 +30,7 @@ class Domain(StrictModel):
 
 class ModelConfig(StrictModel):
     # Whitespace is semantically significant in model prompts.
-    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False, str_strip_whitespace=False)
     id: str
     adapter: Literal["sentence-transformers", "test-hash", "sonar"]
     model_name: str
@@ -61,13 +61,17 @@ def read_yaml(path: Path) -> dict[str, Any]:
 
 def registry(kind: str) -> dict[str, Any]:
     schemas: dict[str, type[StrictModel]] = {
-        "languages": Language, "domains": Domain, "models": ModelConfig
+        "languages": Language,
+        "domains": Domain,
+        "models": ModelConfig,
     }
     schema = schemas[kind]
-    result = {}
+    result: dict[str, Any] = {}
     for path in sorted((resource_root() / "configs" / kind).glob("*.yaml")):
         item = schema.model_validate(read_yaml(path))
         key = getattr(item, "code", getattr(item, "id", None))
+        if not isinstance(key, str):
+            raise ValueError(f"Missing {kind} registry ID")
         if key in result:
             raise ValueError(f"Duplicate {kind} ID: {key}")
         result[key] = item

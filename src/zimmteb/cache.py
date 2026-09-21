@@ -14,7 +14,9 @@ from zimmteb.models.adapters import Embeddings
 
 
 def content_key(value: Any) -> str:
-    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, allow_nan=False).encode("utf-8")).hexdigest()
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, ensure_ascii=False, allow_nan=False).encode("utf-8")
+    ).hexdigest()
 
 
 def check_embeddings(values: Embeddings, rows: int) -> None:
@@ -48,8 +50,9 @@ class EmbeddingCache:
         fd, temporary = tempfile.mkstemp(dir=self.directory, suffix=".npz")
         try:
             with os.fdopen(fd, "wb") as stream:
-                np.savez_compressed(stream, embeddings=values,
-                                    checksum=hashlib.sha256(values.tobytes()).hexdigest())
+                np.savez_compressed(
+                    stream, embeddings=values, checksum=hashlib.sha256(values.tobytes()).hexdigest()
+                )
             os.replace(temporary, self.directory / f"{key}.npz")
         finally:
             Path(temporary).unlink(missing_ok=True)

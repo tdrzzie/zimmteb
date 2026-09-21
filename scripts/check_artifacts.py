@@ -8,8 +8,12 @@ from pathlib import Path
 def main() -> int:
     tracked = subprocess.check_output(["git", "ls-files", "-z"]).decode().split("\0")
     errors = []
-    patterns = [rb"hf_[A-Za-z0-9]{25,}", rb"gh[pousr]_[A-Za-z0-9]{30,}",
-                rb"AKIA[0-9A-Z]{16}", rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"]
+    patterns = [
+        rb"hf_[A-Za-z0-9]{25,}",
+        rb"gh[pousr]_[A-Za-z0-9]{30,}",
+        rb"AKIA[0-9A-Z]{16}",
+        rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
+    ]
     for name in filter(None, tracked):
         path = Path(name)
         if not path.is_file():

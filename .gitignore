@@ -17,3 +17,4 @@ runs/
 *.bin
 coverage.xml
 .coverage
+pytest-cache-files-*/

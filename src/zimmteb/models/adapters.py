@@ -40,11 +40,15 @@ class SentenceTransformerAdapter:
 
         from sentence_transformers import SentenceTransformer
 
-        if not Path(self.config.model_name).is_dir() and not re.fullmatch(r"[0-9a-f]{40}", self.config.revision):
+        if not Path(self.config.model_name).is_dir() and not re.fullmatch(
+            r"[0-9a-f]{40}", self.config.revision
+        ):
             raise ValueError("Hub model revision must be an immutable 40-character commit SHA")
         self.model = SentenceTransformer(
-            self.config.model_name, revision=self.config.revision,
-            device=self.device, trust_remote_code=self.config.trust_remote_code,
+            self.config.model_name,
+            revision=self.config.revision,
+            device=self.device,
+            trust_remote_code=self.config.trust_remote_code,
         )
         self.model.max_seq_length = self.config.max_length
         self.model.eval()
@@ -54,14 +58,23 @@ class SentenceTransformerAdapter:
             raise RuntimeError("Call load before encoding")
         method = self.model.encode_query if query else self.model.encode_document
         try:
-            return np.asarray(method(
-                texts, prompt=self.config.query_prefix if query else self.config.document_prefix,
-                batch_size=self.config.batch_size, normalize_embeddings=self.config.normalize,
-                precision=self.config.precision, convert_to_numpy=True, show_progress_bar=False,
-            ), dtype=np.float32)
+            return np.asarray(
+                method(
+                    texts,
+                    prompt=self.config.query_prefix if query else self.config.document_prefix,
+                    batch_size=self.config.batch_size,
+                    normalize_embeddings=self.config.normalize,
+                    precision=self.config.precision,
+                    convert_to_numpy=True,
+                    show_progress_bar=False,
+                ),
+                dtype=np.float32,
+            )
         except RuntimeError as error:
             if "out of memory" in str(error).lower():
-                raise RuntimeError("Encoding ran out of memory. Lower --batch-size or max_length; explicitly select --device cpu if needed.") from error
+                raise RuntimeError(
+                    "Encoding ran out of memory. Lower --batch-size or max_length; explicitly select --device cpu if needed."
+                ) from error
             raise
 
     def encode_queries(self, texts: list[str]) -> Embeddings:
@@ -71,9 +84,33 @@ class SentenceTransformerAdapter:
         return self._encode(texts, False)
 
     def metadata(self) -> dict[str, Any]:
-        return {**self.config.model_dump(), "device": self.device,
-                "parameter_count": sum(p.numel() for p in self.model.parameters()) if self.model is not None else None,
-                "embedding_dimension": self.model.get_sentence_embedding_dimension() if self.model is not None else None}
+        from pathlib import Path
+
+        from huggingface_hub import try_to_load_from_cache
+
+        directory: Path | None = Path(self.config.model_name)
+        if directory is not None and not directory.is_dir():
+            cached = try_to_load_from_cache(
+                self.config.model_name, "config.json", revision=self.config.revision
+            )
+            directory = Path(cached).parent if isinstance(cached, str) else None
+        disk_bytes = (
+            sum(path.stat().st_size for path in directory.rglob("*") if path.is_file())
+            if directory is not None
+            else None
+        )
+        return {
+            **self.config.model_dump(),
+            "device": self.device,
+            "parameter_count": sum(p.numel() for p in self.model.parameters())
+            if self.model is not None
+            else None,
+            "embedding_dimension": self.model.get_embedding_dimension()
+            if self.model is not None
+            else None,
+            "model_disk_bytes": disk_bytes,
+            "model_disk_bytes_note": "Logical bytes of files present in the selected local model or cached snapshot; excludes other revisions and filesystem deduplication.",
+        }
 
     def system_requirements(self) -> dict[str, Any]:
         return {"backend": "pytorch", "device": self.device, "precision": self.config.precision}
@@ -110,7 +147,12 @@ class HashTestAdapter:
         return self._encode(texts)
 
     def metadata(self) -> dict[str, Any]:
-        return {**self.config.model_dump(), "device": "cpu", "parameter_count": 0, "embedding_dimension": 128}
+        return {
+            **self.config.model_dump(),
+            "device": "cpu",
+            "parameter_count": 0,
+            "embedding_dimension": 128,
+        }
 
     def system_requirements(self) -> dict[str, Any]:
         return {"backend": "numpy", "device": "cpu"}

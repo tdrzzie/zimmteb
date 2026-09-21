@@ -49,8 +49,13 @@ class Provenance(StrictModel):
     @model_validator(mode="after")
     def require_evidence(self) -> "Provenance":
         if self.synthetic:
-            required = {"generator", "generator_version", "generation_parameters",
-                        "source_language", "translation_method"}
+            required = {
+                "generator",
+                "generator_version",
+                "generation_parameters",
+                "source_language",
+                "translation_method",
+            }
             if not required <= self.metadata.keys():
                 raise ValueError(f"Synthetic provenance requires {sorted(required)}")
         if self.human_review_status in {"human-reviewed", "approved"} and not self.reviews:
@@ -112,6 +117,10 @@ class Manifest(StrictModel):
     def safe_relative_file(cls, value: str) -> str:
         from pathlib import PurePosixPath, PureWindowsPath
 
-        if PureWindowsPath(value).drive or PureWindowsPath(value).root or PurePosixPath(value).is_absolute():
+        if (
+            PureWindowsPath(value).drive
+            or PureWindowsPath(value).root
+            or PurePosixPath(value).is_absolute()
+        ):
             raise ValueError("Dataset paths must be relative")
         return value

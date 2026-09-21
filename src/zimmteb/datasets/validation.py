@@ -3,9 +3,11 @@
 import unicodedata
 from collections import Counter
 from difflib import SequenceMatcher
+from typing import cast
 
 from zimmteb.config import StrictModel, registry
 from zimmteb.datasets.registry import RetrievalDataset
+from zimmteb.datasets.schema import Document, Query
 
 
 class ValidationReport(StrictModel):
@@ -41,8 +43,18 @@ def validate(dataset: RetrievalDataset) -> ValidationReport:
         report.errors.append("Manifest contains unknown languages or domains")
     docs = {d.document_id: d for d in dataset.documents}
     for kind, records, ids, texts in (
-        ("document", dataset.documents, [d.document_id for d in dataset.documents], [d.text for d in dataset.documents]),
-        ("query", dataset.queries, [q.id for q in dataset.queries], [q.query for q in dataset.queries]),
+        (
+            "document",
+            dataset.documents,
+            [d.document_id for d in dataset.documents],
+            [d.text for d in dataset.documents],
+        ),
+        (
+            "query",
+            dataset.queries,
+            [q.id for q in dataset.queries],
+            [q.query for q in dataset.queries],
+        ),
     ):
         for value, count in Counter(ids).items():
             if count > 1:
@@ -54,10 +66,13 @@ def validate(dataset: RetrievalDataset) -> ValidationReport:
             language = getattr(record, "language", getattr(record, "query_language", ""))
             if language not in languages or language not in manifest.languages:
                 report.errors.append(f"{id_}: unknown or undeclared language {language}")
-            if record.domain not in domains or record.domain not in manifest.domains:
+            record_domain = cast(Document | Query, record).domain
+            if record_domain not in domains or record_domain not in manifest.domains:
                 report.errors.append(f"{id_}: unknown or undeclared domain")
             if record.license != manifest.license:
-                report.errors.append(f"{id_}: license differs from manifest; split licenses explicitly")
+                report.errors.append(
+                    f"{id_}: license differs from manifest; split licenses explicitly"
+                )
             if any(unicodedata.category(c) in {"Cs", "Co"} or c == "\ufffd" for c in text):
                 report.errors.append(f"{id_}: malformed/suspicious Unicode")
             if any(unicodedata.category(c) == "Cc" and c not in "\n\t\r" for c in text):
@@ -69,7 +84,11 @@ def validate(dataset: RetrievalDataset) -> ValidationReport:
             if record.metadata.get("translation_method") not in {None, "none"}:
                 report.warnings.append(f"{id_}: translation requires bilingual review")
     for query in dataset.queries:
-        referenced = query.positive_document_ids + query.negative_document_ids + query.hard_negative_document_ids
+        referenced = (
+            query.positive_document_ids
+            + query.negative_document_ids
+            + query.hard_negative_document_ids
+        )
         if set(referenced) - docs.keys():
             report.errors.append(f"{query.id}: dangling document references")
         language = languages.get(query.query_language)
@@ -83,20 +102,32 @@ def validate(dataset: RetrievalDataset) -> ValidationReport:
             report.errors.append(f"{query.id}: code-switch review claim lacks evidence")
     # Tiny Phase 1 data: quadratic audit. Replace with candidate indexing for large corpora.
     for i, left in enumerate(dataset.queries):
-        for right in dataset.queries[i + 1:]:
+        for right in dataset.queries[i + 1 :]:
             if left.split == right.split:
                 continue
-            similarity = SequenceMatcher(None, normalized(left.query), normalized(right.query)).ratio()
+            similarity = SequenceMatcher(
+                None, normalized(left.query), normalized(right.query)
+            ).ratio()
             if similarity >= 0.9:
                 report.errors.append(f"Cross-split query leakage: {left.id}/{right.id}")
             if set(left.positive_document_ids) & set(right.positive_document_ids):
                 report.errors.append(f"Cross-split positive document overlap: {left.id}/{right.id}")
             for a in left.positive_document_ids:
                 for b in right.positive_document_ids:
-                    if a != b and a in docs and b in docs and SequenceMatcher(None, normalized(docs[a].text), normalized(docs[b].text)).ratio() >= 0.9:
+                    if (
+                        a != b
+                        and a in docs
+                        and b in docs
+                        and SequenceMatcher(
+                            None, normalized(docs[a].text), normalized(docs[b].text)
+                        ).ratio()
+                        >= 0.9
+                    ):
                         report.errors.append(f"Cross-split near-duplicate documents: {a}/{b}")
     if any(q.synthetic for q in dataset.queries):
-        report.warnings.append("Synthetic infrastructure fixture; not evidence of language competence")
+        report.warnings.append(
+            "Synthetic infrastructure fixture; not evidence of language competence"
+        )
     if any(q.human_review_status == "unreviewed" for q in dataset.queries):
         report.warnings.append("Unreviewed text; linguistic validity is not established")
     return report

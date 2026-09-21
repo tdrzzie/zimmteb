@@ -11,22 +11,40 @@ def system_info() -> dict[str, Any]:
     import torch
 
     versions = {}
-    for package in ("zimmteb", "mteb", "sentence-transformers", "transformers", "datasets", "torch", "numpy", "huggingface-hub"):
+    for package in (
+        "zimmteb",
+        "mteb",
+        "sentence-transformers",
+        "transformers",
+        "datasets",
+        "torch",
+        "numpy",
+        "huggingface-hub",
+    ):
         try:
             versions[package] = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:
             versions[package] = "unavailable"
     try:
-        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, text=True).strip()
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, text=True
+        ).strip()
         dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True))
     except (OSError, subprocess.CalledProcessError):
         commit, dirty = None, None
-    return {"python": platform.python_version(), "os": platform.platform(),
-            "cpu": platform.processor() or platform.machine(), "cpu_count": psutil.cpu_count(),
-            "ram_bytes": psutil.virtual_memory().total, "packages": versions,
-            "cuda_available": torch.cuda.is_available(), "cuda_version": torch.version.cuda,
-            "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
-            "git_commit": commit, "git_dirty": dirty}
+    return {
+        "python": platform.python_version(),
+        "os": platform.platform(),
+        "cpu": platform.processor() or platform.machine(),
+        "cpu_count": psutil.cpu_count(),
+        "ram_bytes": psutil.virtual_memory().total,
+        "packages": versions,
+        "cuda_available": torch.cuda.is_available(),
+        "cuda_version": torch.version.cuda,
+        "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
+        "git_commit": commit,
+        "git_dirty": dirty,
+    }
 
 
 def select_device(requested: str) -> str:
@@ -37,7 +55,9 @@ def select_device(requested: str) -> str:
     if requested == "auto":
         return "cuda" if torch.cuda.is_available() else "cpu"
     if requested == "cuda" and not torch.cuda.is_available():
-        raise ValueError("CUDA requested but unavailable. Install a compatible CUDA PyTorch build or select --device cpu.")
+        raise ValueError(
+            "CUDA requested but unavailable. Install a compatible CUDA PyTorch build or select --device cpu."
+        )
     return requested
 
 
