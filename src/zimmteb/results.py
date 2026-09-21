@@ -22,6 +22,7 @@ class RunConfig(StrictModel):
     seed: int = Field(default=42, ge=0)
     split: Literal["train", "dev", "test"] = "test"
     language: str | None = None
+    document_language: str | None = None
     domain: str | None = None
 
 

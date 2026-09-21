@@ -1,5 +1,6 @@
 """MTEB 2.21 task integration. Local tasks are not registered globally upstream."""
 
+import hashlib
 import time
 from pathlib import Path
 from typing import Any
@@ -19,7 +20,14 @@ from zimmteb.models.adapters import EmbeddingModelAdapter, Embeddings
 
 
 class ZimRetrievalTask(AbsTaskRetrieval):
-    def __init__(self, data: RetrievalDataset, queries: list[Query], split: str = "test") -> None:
+    def __init__(
+        self,
+        data: RetrievalDataset,
+        queries: list[Query],
+        split: str = "test",
+        *,
+        document_language: str | None = None,
+    ) -> None:
         self.source = data
         self.selected_queries = queries
         self.selected_split = split
@@ -28,18 +36,29 @@ class ZimRetrievalTask(AbsTaskRetrieval):
         for query in queries:
             language = languages[query.query_language]
             codes.update(language.code_switch_partners or [language.code])
+        for document in data.documents:
+            language = languages[document.language]
+            codes.update(language.code_switch_partners or [language.code])
+        synthetic_queries = all(query.synthetic for query in queries)
+        task_name = (
+            "ZimMTEBTinyRetrieval"
+            if data.manifest.dataset_id == "tiny-synthetic"
+            else "ZimMTEBRetrieval"
+            + hashlib.sha256(data.manifest.dataset_id.encode()).hexdigest()[:12]
+        )
         self.metadata = TaskMetadata(
-            name="ZimMTEBTinyRetrieval",
-            description="Synthetic unreviewed Zimbabwe-language infrastructure fixture; not a scientific benchmark.",
-            dataset={"path": "zimmteb/local-synthetic", "revision": data.actual_checksum},
+            name=task_name
+            + ("To" + document_language.replace("-", "").title() if document_language else ""),
+            description=f"Local retrieval dataset {data.manifest.dataset_id}; review level {data.manifest.human_review_level}. See dataset provenance; no upstream registration.",
+            dataset={"path": "zimmteb/local-dataset", "revision": data.actual_checksum},
             type="Retrieval",
             category="t2t",
             eval_splits=[split],
             eval_langs={"default": [f"{code}-Latn" for code in sorted(codes)]},
             main_score="ndcg_at_10",
-            license="cc0-1.0",
-            domains=["Constructed"],
-            annotations_creators="LM-generated",
+            license=data.manifest.license.lower(),
+            domains=["Constructed"] if synthetic_queries else None,
+            annotations_creators="LM-generated" if synthetic_queries else None,
             is_public=False,
         )
         super().__init__()
@@ -78,9 +97,9 @@ class ZimRetrievalTask(AbsTaskRetrieval):
 
 def local_benchmark(task: ZimRetrievalTask) -> Benchmark:
     return Benchmark(
-        name="ZimMTEB(v0.1,synth)",
+        name=f"ZimMTEB(v{task.source.manifest.benchmark_version},local)",
         tasks=[task],
-        description="Local synthetic pipeline benchmark. No upstream registration or language-validity claim.",
+        description="Local retrieval benchmark. No upstream registration or language-validity claim.",
     )
 
 

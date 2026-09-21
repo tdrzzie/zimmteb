@@ -58,6 +58,55 @@ def test_empty_filter_fails_before_model_load(tmp_path):
         )
 
 
+def test_directional_retrieval_preserves_target_distractors(tiny, monkeypatch, tmp_path):
+    # Artificial judgments verify mechanics only; never released as linguistic data.
+    source = next(q for q in tiny.queries if q.query_language == "eng")
+    targets = [d.document_id for d in tiny.documents if d.language == "sna"]
+    source.positive_document_ids.append(targets[0])
+    source.negative_document_ids = []
+    source.hard_negative_document_ids = []
+    monkeypatch.setattr("zimmteb.runner.load_dataset", lambda _: tiny)
+    result = run_benchmark(
+        RunConfig(model="test-hash", language="eng", document_language="sna"),
+        tmp_path / "directional",
+    )
+    assert len(result.queries) == 1
+    assert result.queries[0].positive_document_ids == [targets[0]]
+    assert set(result.queries[0].ranking) == set(targets)
+    assert result.efficiency["corpus_documents"] == len(targets)
+    assert len(result.efficiency["queries_without_target_positives"]) == 2
+    native = json.loads((tmp_path / "directional" / "mteb-results.json").read_text())
+    assert native["task_results"][0]["task_name"] == "ZimMTEBTinyRetrievalToSna"
+    assert any(s.value == "eng->sna" for s in result.slices)
+    different = result.model_copy(
+        update={"config": result.config.model_copy(update={"document_language": None})}
+    )
+    with pytest.raises(ValueError, match="target-language corpora"):
+        compare(result, different)
+
+
+def test_directional_retrieval_requires_real_judgments(tmp_path):
+    with pytest.raises(ValueError, match="No queries have positive judgments"):
+        run_benchmark(
+            RunConfig(model="test-hash", language="eng", document_language="nde"),
+            tmp_path / "no-judgments",
+        )
+
+
+def test_local_task_metadata_follows_dataset_provenance(tiny):
+    from zimmteb.tasks import ZimRetrievalTask
+
+    tiny.manifest.dataset_id = "test-only-other-dataset"
+    tiny.manifest.license = "CC-BY-SA-4.0"
+    for query in tiny.queries:
+        query.synthetic = False
+    task = ZimRetrievalTask(tiny, tiny.queries)
+    assert task.metadata.name != "ZimMTEBTinyRetrieval"
+    assert task.metadata.license == "cc-by-sa-4.0"
+    assert task.metadata.annotations_creators is None
+    assert "test-only-other-dataset" in task.metadata.description
+
+
 @pytest.mark.parametrize(
     "command",
     [

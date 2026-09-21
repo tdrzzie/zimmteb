@@ -42,6 +42,30 @@ def validate(dataset: RetrievalDataset) -> ValidationReport:
     if set(manifest.languages) - languages.keys() or set(manifest.domains) - domains.keys():
         report.errors.append("Manifest contains unknown languages or domains")
     docs = {d.document_id: d for d in dataset.documents}
+    # All judgments can expose source content during training, including negatives.
+    group_splits: dict[tuple[str, ...], set[str]] = {}
+    for query in dataset.queries:
+        records_in_query: list[Document | Query] = [query]
+        for id_ in (
+            query.positive_document_ids
+            + query.negative_document_ids
+            + query.hard_negative_document_ids
+        ):
+            if id_ in docs:
+                records_in_query.append(docs[id_])
+                group_splits.setdefault(("document", id_), set()).add(query.split)
+        for item in records_in_query:
+            if item.source_document_id:
+                key = ("source", item.source_id or item.source, item.source_document_id)
+                group_splits.setdefault(key, set()).add(query.split)
+            if item.translation_family_id:
+                translation_key = ("translation", item.translation_family_id)
+                group_splits.setdefault(translation_key, set()).add(query.split)
+    for group, splits_used in sorted(group_splits.items()):
+        if len(splits_used) > 1:
+            report.errors.append(
+                f"Cross-split source-family leakage: {'/'.join(group)} in {sorted(splits_used)}"
+            )
     for kind, records, ids, texts in (
         (
             "document",

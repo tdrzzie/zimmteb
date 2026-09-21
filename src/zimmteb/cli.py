@@ -39,6 +39,8 @@ def handled(function: Callable[..., Any]) -> Callable[..., Any]:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         try:
             return function(*args, **kwargs)
+        except typer.Exit:
+            raise
         except (ValueError, OSError, RuntimeError) as error:
             typer.echo(f"Error: {error}", err=True)
             raise typer.Exit(1) from error
@@ -105,6 +107,44 @@ def benchmark_list() -> None:
     emit([read_yaml(path) for path in (resource_root() / "configs" / "benchmarks").glob("*.yaml")])
 
 
+@groups["datasets"].command("review-export")
+@handled
+def review_export(
+    dataset: str = "tiny-synthetic", output: Path = Path(".cache/curation/review.json")
+) -> None:
+    from zimmteb.datasets.curation import export_packet
+
+    if output.exists():
+        raise ValueError("Review output already exists; use a fresh path to preserve decisions")
+    packet = export_packet(load_dataset(dataset))
+    write_json(output, packet.model_dump(mode="json"))
+    emit({"packet": str(output.resolve()), "records": len(packet.items), "status": "unreviewed"})
+
+
+@groups["datasets"].command("review-check")
+@handled
+def review_check(
+    packet: Path = typer.Option(...),
+    sources: Path = typer.Option(...),
+    dataset: str = "tiny-synthetic",
+    output: Path = Path(".cache/curation/check.json"),
+) -> None:
+    from zimmteb.datasets.curation import ReviewPacket, SourceCatalog, check_packet
+
+    if output.resolve() in {packet.resolve(), sources.resolve()}:
+        raise ValueError("Review check output must not overwrite its inputs")
+    result = check_packet(
+        load_dataset(dataset),
+        ReviewPacket.model_validate_json(packet.read_text(encoding="utf-8")),
+        SourceCatalog.model_validate(read_yaml(sources)),
+    )
+    value = {"valid": result.valid, **result.model_dump()}
+    write_json(output, value)
+    emit(value)
+    if not result.valid:
+        raise typer.Exit(1)
+
+
 @groups["benchmark"].command("run")
 @handled
 def benchmark_run(
@@ -112,6 +152,7 @@ def benchmark_run(
     model: str | None = None,
     dataset: str | None = None,
     language: str | None = None,
+    document_language: str | None = None,
     domain: str | None = None,
     task: str | None = None,
     device: str | None = None,
@@ -129,6 +170,7 @@ def benchmark_run(
         "model": model,
         "dataset": dataset,
         "language": language,
+        "document_language": document_language,
         "domain": domain,
         "task": task,
         "device": device,

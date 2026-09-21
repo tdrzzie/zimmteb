@@ -11,7 +11,7 @@ import numpy as np
 
 from zimmteb.cache import content_key
 from zimmteb.config import ModelConfig, model_config, registry
-from zimmteb.datasets.registry import load_dataset
+from zimmteb.datasets.registry import RetrievalDataset, load_dataset
 from zimmteb.datasets.validation import validate
 from zimmteb.hardware import MemorySampler, select_device, system_info
 from zimmteb.metrics import ranking_metrics, slices
@@ -54,7 +54,11 @@ def run_benchmark(
         raise ValueError("Dataset validation failed: " + "; ".join(validation.errors))
     if config.version != data.manifest.benchmark_version:
         raise ValueError("Benchmark config version differs from dataset benchmark version")
-    for value, kind in ((config.language, "languages"), (config.domain, "domains")):
+    for value, kind in (
+        (config.language, "languages"),
+        (config.document_language, "languages"),
+        (config.domain, "domains"),
+    ):
         if value is not None and value not in registry(kind):
             raise ValueError(f"Unknown {kind} filter: {value}")
     queries = [
@@ -66,7 +70,30 @@ def run_benchmark(
     ]
     if not queries:
         raise ValueError("No queries match the selected split/language/domain")
-    # Keep the full corpus for all query slices so filters do not make retrieval easier.
+    eligible_query_ids = {query.id for query in queries}
+    # Query filters keep the full corpus; an explicit target language defines a
+    # different retrieval task over every document in that target language.
+    task_data = data
+    if config.document_language:
+        documents = [d for d in data.documents if d.language == config.document_language]
+        target_ids = {d.document_id for d in documents}
+        selected_queries = []
+        for query in queries:
+            if not target_ids.intersection(query.positive_document_ids):
+                continue
+            updates = {
+                field: [id_ for id_ in getattr(query, field) if id_ in target_ids]
+                for field in (
+                    "positive_document_ids",
+                    "negative_document_ids",
+                    "hard_negative_document_ids",
+                )
+            }
+            selected_queries.append(query.model_copy(update=updates))
+        queries = selected_queries
+        if not queries:
+            raise ValueError("No queries have positive judgments in the target document language")
+        task_data = RetrievalDataset(data.manifest, documents, queries, data.actual_checksum)
     selected = model_config(config.model).model_copy(
         update={"batch_size": config.batch_size, "precision": config.precision}
     )
@@ -124,7 +151,9 @@ def run_benchmark(
             model.load()
             load_seconds = time.perf_counter() - load_start
             bridge = MTEBSearchBridge(model, cache, identity_parts, device)
-            task = ZimRetrievalTask(data, queries, config.split)
+            task = ZimRetrievalTask(
+                task_data, queries, config.split, document_language=config.document_language
+            )
             benchmark = local_benchmark(task)
             native = mteb.evaluate(
                 bridge,
@@ -169,6 +198,11 @@ def run_benchmark(
                 )
             efficiency: dict[str, Any] = {
                 **bridge.efficiency,
+                "document_language": config.document_language,
+                "evaluated_queries": len(queries),
+                "queries_without_target_positives": sorted(
+                    eligible_query_ids - {query.id for query in queries}
+                ),
                 "model_load_seconds": load_seconds,
                 "peak_rss_bytes_sampled": memory.peak,
                 "peak_cuda_allocated_bytes": torch.cuda.max_memory_allocated()

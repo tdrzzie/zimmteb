@@ -16,6 +16,7 @@ def markdown_report(result: RunResult) -> str:
         "",
         f"Dataset: `{result.dataset_id}` {result.dataset_version}; benchmark {result.benchmark_version}",
         f"Checksum: `{result.dataset_checksum}`",
+        f"Target document language: `{result.config.document_language or 'all'}`. Target-language runs use a different corpus and must not be compared with all-language runs.",
         "",
         "**Synthetic infrastructure measurements only. No linguistic validity or model superiority is established.**"
         if result.synthetic
@@ -113,6 +114,8 @@ def compare(left: RunResult, right: RunResult) -> dict[str, object]:
             raise ValueError(f"Incompatible results: {field} differs")
     if left.config.split != right.config.split:
         raise ValueError("Incompatible evaluation splits")
+    if left.config.document_language != right.config.document_language:
+        raise ValueError("Incompatible target-language corpora")
     a, b = {q.query_id: q for q in left.queries}, {q.query_id: q for q in right.queries}
     if a.keys() != b.keys():
         raise ValueError("Paired comparisons require exactly the same query IDs")

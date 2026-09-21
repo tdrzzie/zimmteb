@@ -45,6 +45,9 @@ class Provenance(StrictModel):
     human_review_status: ReviewStatus
     metadata: dict[str, Any] = {}
     reviews: list[Review] = []
+    source_id: str | None = Field(default=None, min_length=1)
+    source_document_id: str | None = Field(default=None, min_length=1)
+    translation_family_id: str | None = Field(default=None, min_length=1)
 
     @model_validator(mode="after")
     def require_evidence(self) -> "Provenance":
