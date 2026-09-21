@@ -1,0 +1,1339 @@
+{
+  "schema_version": "1.0",
+  "run_id": "20260921T051049Z-f9694d9c",
+  "timestamp": "2026-09-21T05:10:52.912529Z",
+  "identity": "2e96927354958a8ca9d6b7c13c48b098da2f6f1a9793eb49ea4260db852bd928",
+  "benchmark_version": "0.1.0",
+  "config": {
+    "name": "ZimMTEBTinyRetrieval",
+    "version": "0.1.0",
+    "dataset": "tiny-synthetic",
+    "task": "retrieval",
+    "model": "multilingual-e5-small",
+    "device": "cpu",
+    "batch_size": 8,
+    "precision": "float32",
+    "seed": 42,
+    "split": "test",
+    "language": null,
+    "domain": null
+  },
+  "dataset_id": "tiny-synthetic",
+  "dataset_version": "0.1.0",
+  "dataset_checksum": "aaa7303c3cab917c70d9967a0f2f7af61351fbef0e012fde121411aa855b3566",
+  "model": {
+    "id": "multilingual-e5-small",
+    "adapter": "sentence-transformers",
+    "model_name": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "mit",
+    "license_url": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+    "query_prefix": "query: ",
+    "document_prefix": "passage: ",
+    "normalize": true,
+    "max_length": 128,
+    "batch_size": 8,
+    "precision": "float32",
+    "trust_remote_code": false,
+    "notes": "Small multilingual baseline; prompts follow model card."
+  },
+  "model_metadata": {
+    "id": "multilingual-e5-small",
+    "adapter": "sentence-transformers",
+    "model_name": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "mit",
+    "license_url": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+    "query_prefix": "query: ",
+    "document_prefix": "passage: ",
+    "normalize": true,
+    "max_length": 128,
+    "batch_size": 8,
+    "precision": "float32",
+    "trust_remote_code": false,
+    "notes": "Small multilingual baseline; prompts follow model card.",
+    "device": "cpu",
+    "parameter_count": 117653760,
+    "embedding_dimension": 384,
+    "model_disk_bytes": 492795290,
+    "model_disk_bytes_note": "Logical bytes of files present in the selected local model or cached snapshot; excludes other revisions and filesystem deduplication."
+  },
+  "environment": {
+    "python": "3.12.14",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "cpu_count": 32,
+    "ram_bytes": 16332025856,
+    "packages": {
+      "zimmteb": "0.1.0",
+      "mteb": "2.21.0",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.17.0",
+      "datasets": "5.0.1",
+      "torch": "2.8.0",
+      "numpy": "2.3.5",
+      "huggingface-hub": "1.32.0"
+    },
+    "cuda_available": false,
+    "cuda_version": null,
+    "gpu": null,
+    "git_commit": "4d2010c8a649e18bbe13dbfc7fba2bc0f88cec34",
+    "git_dirty": true
+  },
+  "synthetic": true,
+  "human_review_status": "unreviewed",
+  "evaluation_engine": "mteb",
+  "efficiency": {
+    "cache_hits": [],
+    "precision": "float32",
+    "batch_size": 8,
+    "timing_scope": "batched phases; no single-request latency claim",
+    "index_seconds": 0.11501579999981004,
+    "documents_per_second": 139.11132209684604,
+    "corpus_documents": 16,
+    "embedding_dimension": 384,
+    "query_encoding_seconds": 0.05664870000009614,
+    "query_search_seconds": 0.0573335000001407,
+    "queries_per_second": 226.74352690779557,
+    "amortized_query_ms": 4.410269230780054,
+    "ranking_seconds": 0.0006877999999232998,
+    "model_load_seconds": 2.7321316999998544,
+    "peak_rss_bytes_sampled": 1399058432,
+    "peak_cuda_allocated_bytes": null,
+    "model_disk_bytes": 492795290,
+    "model_disk_bytes_note": "Logical bytes of files present in the selected local model or cached snapshot; excludes other revisions and filesystem deduplication."
+  },
+  "runtime_seconds": 3.291805600000089,
+  "queries": [
+    {
+      "query_id": "q-eng-0",
+      "query_language": "eng",
+      "document_languages": [
+        "eng"
+      ],
+      "domain": "mobile-payments",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-eng-0",
+        "d-nde-0",
+        "d-sna-0",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-nde-codeswitch-0",
+        "d-distractor-1",
+        "d-sna-2",
+        "d-nde-2",
+        "d-eng-2",
+        "d-distractor-0",
+        "d-eng-nde-codeswitch-1",
+        "d-nde-1",
+        "d-eng-sna-codeswitch-1",
+        "d-sna-1",
+        "d-eng-1",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.9079159498214722,
+        0.830866277217865,
+        0.829981803894043,
+        0.8257254362106323,
+        0.8118845820426941,
+        0.8098137378692627,
+        0.7965899109840393,
+        0.7943553924560547,
+        0.781937301158905,
+        0.7810071706771851,
+        0.7750066518783569,
+        0.7614400386810303,
+        0.7529377937316895,
+        0.7511201500892639,
+        0.7422997951507568,
+        0.7107943892478943
+      ],
+      "positive_document_ids": [
+        "d-eng-0"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-eng-1",
+      "query_language": "eng",
+      "document_languages": [
+        "eng"
+      ],
+      "domain": "agriculture",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-eng-1",
+        "d-eng-nde-codeswitch-1",
+        "d-eng-sna-codeswitch-1",
+        "d-sna-1",
+        "d-nde-1",
+        "d-nde-0",
+        "d-sna-2",
+        "d-sna-0",
+        "d-nde-2",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-0",
+        "d-eng-2",
+        "d-distractor-1",
+        "d-eng-nde-codeswitch-0",
+        "d-distractor-0",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8540893793106079,
+        0.8429231643676758,
+        0.817682147026062,
+        0.8138951063156128,
+        0.8080576062202454,
+        0.7691366076469421,
+        0.7669274210929871,
+        0.7668653726577759,
+        0.7621829509735107,
+        0.7607089281082153,
+        0.7554060220718384,
+        0.7538780570030212,
+        0.7483372688293457,
+        0.747417688369751,
+        0.7184648513793945,
+        0.707025408744812
+      ],
+      "positive_document_ids": [
+        "d-eng-1"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-eng-2",
+      "query_language": "eng",
+      "document_languages": [
+        "eng"
+      ],
+      "domain": "technology-support",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-eng-2",
+        "d-eng-0",
+        "d-nde-0",
+        "d-sna-0",
+        "d-eng-nde-codeswitch-1",
+        "d-distractor-1",
+        "d-sna-2",
+        "d-eng-sna-codeswitch-0",
+        "d-nde-2",
+        "d-eng-nde-codeswitch-0",
+        "d-nde-1",
+        "d-eng-sna-codeswitch-1",
+        "d-sna-1",
+        "d-eng-1",
+        "d-distractor-0",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8976801037788391,
+        0.8056720495223999,
+        0.7982378005981445,
+        0.7928575277328491,
+        0.7923495769500732,
+        0.7921148538589478,
+        0.7895500063896179,
+        0.7881693840026855,
+        0.7835843563079834,
+        0.7823159694671631,
+        0.7757468223571777,
+        0.7748647928237915,
+        0.773663341999054,
+        0.768063485622406,
+        0.7489495277404785,
+        0.714043140411377
+      ],
+      "positive_document_ids": [
+        "d-eng-2"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-sna-0",
+      "query_language": "sna",
+      "document_languages": [
+        "sna"
+      ],
+      "domain": "mobile-payments",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-sna-0",
+        "d-nde-0",
+        "d-sna-2",
+        "d-nde-2",
+        "d-eng-0",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-nde-codeswitch-0",
+        "d-sna-1",
+        "d-nde-1",
+        "d-eng-nde-codeswitch-1",
+        "d-distractor-1",
+        "d-distractor-0",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-2",
+        "d-eng-1",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8793013095855713,
+        0.8763236403465271,
+        0.8546724319458008,
+        0.8484598398208618,
+        0.8449490666389465,
+        0.8341867327690125,
+        0.8291733264923096,
+        0.8197482824325562,
+        0.8188678026199341,
+        0.8154491186141968,
+        0.8151231408119202,
+        0.8060237169265747,
+        0.8014452457427979,
+        0.7985295057296753,
+        0.7955340147018433,
+        0.77501380443573
+      ],
+      "positive_document_ids": [
+        "d-sna-0"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-sna-1",
+      "query_language": "sna",
+      "document_languages": [
+        "sna"
+      ],
+      "domain": "agriculture",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5,
+        "map_at_10": 0.3333333333333333
+      },
+      "ranking": [
+        "d-sna-2",
+        "d-nde-2",
+        "d-sna-1",
+        "d-eng-nde-codeswitch-1",
+        "d-eng-0",
+        "d-nde-1",
+        "d-sna-0",
+        "d-nde-0",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-1",
+        "d-eng-nde-codeswitch-0",
+        "d-eng-2",
+        "d-distractor-0",
+        "d-distractor-2",
+        "d-distractor-1"
+      ],
+      "relevance_scores": [
+        0.8268218040466309,
+        0.8180086612701416,
+        0.80837082862854,
+        0.8045141696929932,
+        0.7966828346252441,
+        0.7965726852416992,
+        0.7965028285980225,
+        0.7961107492446899,
+        0.7901496887207031,
+        0.7884743213653564,
+        0.786439836025238,
+        0.7770984172821045,
+        0.7762695550918579,
+        0.7749966382980347,
+        0.7690005898475647,
+        0.7634284496307373
+      ],
+      "positive_document_ids": [
+        "d-sna-1"
+      ],
+      "failures": [
+        "wrong-document-first"
+      ]
+    },
+    {
+      "query_id": "q-sna-2",
+      "query_language": "sna",
+      "document_languages": [
+        "sna"
+      ],
+      "domain": "education",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-sna-2",
+        "d-nde-2",
+        "d-nde-0",
+        "d-sna-0",
+        "d-eng-0",
+        "d-nde-1",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-nde-codeswitch-1",
+        "d-eng-nde-codeswitch-0",
+        "d-sna-1",
+        "d-distractor-0",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-1",
+        "d-distractor-1",
+        "d-eng-2",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.9039984345436096,
+        0.8853789567947388,
+        0.842484176158905,
+        0.8356009721755981,
+        0.8102285861968994,
+        0.8087966442108154,
+        0.8081172108650208,
+        0.8005247116088867,
+        0.7999453544616699,
+        0.7968800067901611,
+        0.7876691818237305,
+        0.7842098474502563,
+        0.7795342206954956,
+        0.7760398387908936,
+        0.7694741487503052,
+        0.7589777708053589
+      ],
+      "positive_document_ids": [
+        "d-sna-2"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-nde-0",
+      "query_language": "nde",
+      "document_languages": [
+        "nde"
+      ],
+      "domain": "mobile-payments",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-nde-0",
+        "d-sna-0",
+        "d-sna-2",
+        "d-nde-2",
+        "d-eng-0",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-nde-codeswitch-0",
+        "d-nde-1",
+        "d-eng-nde-codeswitch-1",
+        "d-distractor-1",
+        "d-sna-1",
+        "d-distractor-0",
+        "d-eng-2",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-1",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.889215350151062,
+        0.8802978992462158,
+        0.8632376194000244,
+        0.8583471775054932,
+        0.8389779925346375,
+        0.8217702507972717,
+        0.8194684386253357,
+        0.8134000897407532,
+        0.8091795444488525,
+        0.8069026470184326,
+        0.8056133985519409,
+        0.8023146390914917,
+        0.7957441210746765,
+        0.79095858335495,
+        0.7881215810775757,
+        0.762906014919281
+      ],
+      "positive_document_ids": [
+        "d-nde-0"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-nde-1",
+      "query_language": "nde",
+      "document_languages": [
+        "nde"
+      ],
+      "domain": "agriculture",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-nde-1",
+        "d-sna-2",
+        "d-nde-2",
+        "d-sna-1",
+        "d-nde-0",
+        "d-eng-nde-codeswitch-1",
+        "d-sna-0",
+        "d-eng-1",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-0",
+        "d-eng-nde-codeswitch-0",
+        "d-distractor-1",
+        "d-eng-2",
+        "d-distractor-0",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8478489518165588,
+        0.8350508213043213,
+        0.8216769099235535,
+        0.8114396929740906,
+        0.8081026077270508,
+        0.8078777194023132,
+        0.8063486814498901,
+        0.7990024089813232,
+        0.7974169254302979,
+        0.7966881990432739,
+        0.7943294644355774,
+        0.7935750484466553,
+        0.7932877540588379,
+        0.7778269052505493,
+        0.773324191570282,
+        0.7718814611434937
+      ],
+      "positive_document_ids": [
+        "d-nde-1"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-nde-2",
+      "query_language": "nde",
+      "document_languages": [
+        "nde"
+      ],
+      "domain": "education",
+      "code_switch": false,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-nde-2",
+        "d-sna-2",
+        "d-nde-0",
+        "d-sna-0",
+        "d-eng-0",
+        "d-eng-nde-codeswitch-1",
+        "d-nde-1",
+        "d-sna-1",
+        "d-distractor-0",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-sna-codeswitch-1",
+        "d-eng-nde-codeswitch-0",
+        "d-eng-1",
+        "d-distractor-1",
+        "d-eng-2",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8895142078399658,
+        0.8868638277053833,
+        0.8449350595474243,
+        0.8360614776611328,
+        0.8243387937545776,
+        0.815557599067688,
+        0.8100163340568542,
+        0.8066389560699463,
+        0.8038998246192932,
+        0.8038380146026611,
+        0.8016846179962158,
+        0.7983602285385132,
+        0.7916698455810547,
+        0.7854126691818237,
+        0.7774127125740051,
+        0.7672299742698669
+      ],
+      "positive_document_ids": [
+        "d-nde-2"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-eng-sna-codeswitch-0",
+      "query_language": "eng-sna-codeswitch",
+      "document_languages": [
+        "eng-sna-codeswitch"
+      ],
+      "domain": "customer-support",
+      "code_switch": true,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5,
+        "map_at_10": 0.3333333333333333
+      },
+      "ranking": [
+        "d-eng-nde-codeswitch-0",
+        "d-eng-0",
+        "d-eng-sna-codeswitch-0",
+        "d-sna-0",
+        "d-sna-2",
+        "d-nde-0",
+        "d-nde-2",
+        "d-eng-2",
+        "d-nde-1",
+        "d-eng-nde-codeswitch-1",
+        "d-distractor-0",
+        "d-eng-sna-codeswitch-1",
+        "d-sna-1",
+        "d-distractor-1",
+        "d-eng-1",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.859000027179718,
+        0.8584898710250854,
+        0.8545631766319275,
+        0.8545064330101013,
+        0.8503574728965759,
+        0.8425301313400269,
+        0.8416218757629395,
+        0.8125476837158203,
+        0.8100283741950989,
+        0.8085719347000122,
+        0.8058479428291321,
+        0.7986469864845276,
+        0.7979749441146851,
+        0.7955984473228455,
+        0.7891154289245605,
+        0.7464287877082825
+      ],
+      "positive_document_ids": [
+        "d-eng-sna-codeswitch-0"
+      ],
+      "failures": [
+        "wrong-document-first",
+        "code-switch-query-failure"
+      ]
+    },
+    {
+      "query_id": "q-eng-sna-codeswitch-1",
+      "query_language": "eng-sna-codeswitch",
+      "document_languages": [
+        "eng-sna-codeswitch"
+      ],
+      "domain": "agriculture",
+      "code_switch": true,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575,
+        "map_at_10": 0.5
+      },
+      "ranking": [
+        "d-eng-nde-codeswitch-1",
+        "d-eng-sna-codeswitch-1",
+        "d-sna-1",
+        "d-nde-1",
+        "d-sna-2",
+        "d-nde-2",
+        "d-sna-0",
+        "d-eng-nde-codeswitch-0",
+        "d-nde-0",
+        "d-eng-1",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-2",
+        "d-distractor-1",
+        "d-eng-0",
+        "d-distractor-0",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8587865233421326,
+        0.8366940021514893,
+        0.8227822184562683,
+        0.8171949982643127,
+        0.8126723766326904,
+        0.8099822998046875,
+        0.7960336208343506,
+        0.7914766073226929,
+        0.7913181185722351,
+        0.7911825776100159,
+        0.7680090665817261,
+        0.7610865235328674,
+        0.7520275115966797,
+        0.7489416599273682,
+        0.7476527690887451,
+        0.7350019812583923
+      ],
+      "positive_document_ids": [
+        "d-eng-sna-codeswitch-1"
+      ],
+      "failures": [
+        "wrong-document-first",
+        "code-switch-query-failure"
+      ]
+    },
+    {
+      "query_id": "q-eng-nde-codeswitch-0",
+      "query_language": "eng-nde-codeswitch",
+      "document_languages": [
+        "eng-nde-codeswitch"
+      ],
+      "domain": "customer-support",
+      "code_switch": true,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-eng-nde-codeswitch-0",
+        "d-sna-0",
+        "d-nde-0",
+        "d-sna-2",
+        "d-eng-0",
+        "d-eng-sna-codeswitch-0",
+        "d-nde-2",
+        "d-nde-1",
+        "d-eng-nde-codeswitch-1",
+        "d-sna-1",
+        "d-eng-2",
+        "d-distractor-0",
+        "d-eng-sna-codeswitch-1",
+        "d-distractor-1",
+        "d-eng-1",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8641262054443359,
+        0.858700692653656,
+        0.8538004755973816,
+        0.8514677286148071,
+        0.8513840436935425,
+        0.8493268489837646,
+        0.8445762395858765,
+        0.8172692060470581,
+        0.8115846514701843,
+        0.8035193681716919,
+        0.8027530312538147,
+        0.798380970954895,
+        0.7941129207611084,
+        0.7931367754936218,
+        0.7833001613616943,
+        0.7373179197311401
+      ],
+      "positive_document_ids": [
+        "d-eng-nde-codeswitch-0"
+      ],
+      "failures": []
+    },
+    {
+      "query_id": "q-eng-nde-codeswitch-1",
+      "query_language": "eng-nde-codeswitch",
+      "document_languages": [
+        "eng-nde-codeswitch"
+      ],
+      "domain": "agriculture",
+      "code_switch": true,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      },
+      "ranking": [
+        "d-eng-nde-codeswitch-1",
+        "d-sna-1",
+        "d-eng-sna-codeswitch-1",
+        "d-nde-1",
+        "d-sna-2",
+        "d-nde-2",
+        "d-sna-0",
+        "d-nde-0",
+        "d-eng-nde-codeswitch-0",
+        "d-eng-1",
+        "d-eng-sna-codeswitch-0",
+        "d-eng-2",
+        "d-eng-0",
+        "d-distractor-1",
+        "d-distractor-0",
+        "d-distractor-2"
+      ],
+      "relevance_scores": [
+        0.8642187714576721,
+        0.8423514366149902,
+        0.8365379571914673,
+        0.8327800035476685,
+        0.827029824256897,
+        0.822133481502533,
+        0.8088266253471375,
+        0.8051493167877197,
+        0.8043826222419739,
+        0.7965465784072876,
+        0.7892498970031738,
+        0.7677019834518433,
+        0.766103982925415,
+        0.7593166828155518,
+        0.7575179934501648,
+        0.7396888732910156
+      ],
+      "positive_document_ids": [
+        "d-eng-nde-codeswitch-1"
+      ],
+      "failures": []
+    }
+  ],
+  "slices": [
+    {
+      "dimension": "code_switch",
+      "value": "eng-nde-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "code_switch",
+      "value": "eng-sna-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.41666666666666663,
+        "ndcg_at_10": 0.5654648767857288,
+        "map_at_10": 0.41666666666666663
+      }
+    },
+    {
+      "dimension": "code_switch",
+      "value": "monolingual",
+      "count": 9,
+      "metrics": {
+        "recall_at_1": 0.8888888888888888,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.9259259259259258,
+        "ndcg_at_10": 0.9444444444444444,
+        "map_at_10": 0.9259259259259258
+      }
+    },
+    {
+      "dimension": "domain",
+      "value": "agriculture",
+      "count": 5,
+      "metrics": {
+        "recall_at_1": 0.6,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.7666666666666666,
+        "ndcg_at_10": 0.8261859507142916,
+        "map_at_10": 0.7666666666666666
+      }
+    },
+    {
+      "dimension": "domain",
+      "value": "customer-support",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 0.5,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.6666666666666666,
+        "ndcg_at_10": 0.75,
+        "map_at_10": 0.6666666666666666
+      }
+    },
+    {
+      "dimension": "domain",
+      "value": "education",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "domain",
+      "value": "mobile-payments",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "domain",
+      "value": "technology-support",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng-nde-codeswitch/agriculture",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng-nde-codeswitch/customer-support",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng-sna-codeswitch/agriculture",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.6309297535714575,
+        "map_at_10": 0.5
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng-sna-codeswitch/customer-support",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5,
+        "map_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng/agriculture",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng/mobile-payments",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "eng/technology-support",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "nde/agriculture",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "nde/education",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "nde/mobile-payments",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "sna/agriculture",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.3333333333333333,
+        "ndcg_at_10": 0.5,
+        "map_at_10": 0.3333333333333333
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "sna/education",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_domain",
+      "value": "sna/mobile-payments",
+      "count": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_pair",
+      "value": "eng->eng",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_pair",
+      "value": "eng-nde-codeswitch->eng-nde-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_pair",
+      "value": "eng-sna-codeswitch->eng-sna-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.41666666666666663,
+        "ndcg_at_10": 0.5654648767857288,
+        "map_at_10": 0.41666666666666663
+      }
+    },
+    {
+      "dimension": "language_pair",
+      "value": "nde->nde",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "language_pair",
+      "value": "sna->sna",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 0.6666666666666666,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.7777777777777777,
+        "ndcg_at_10": 0.8333333333333334,
+        "map_at_10": 0.7777777777777777
+      }
+    },
+    {
+      "dimension": "overall",
+      "value": "all",
+      "count": 13,
+      "metrics": {
+        "recall_at_1": 0.7692307692307693,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.8589743589743589,
+        "ndcg_at_10": 0.8946869041208814,
+        "map_at_10": 0.8589743589743589
+      }
+    },
+    {
+      "dimension": "query_language",
+      "value": "eng",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "query_language",
+      "value": "eng-nde-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "query_language",
+      "value": "eng-sna-codeswitch",
+      "count": 2,
+      "metrics": {
+        "recall_at_1": 0.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.41666666666666663,
+        "ndcg_at_10": 0.5654648767857288,
+        "map_at_10": 0.41666666666666663
+      }
+    },
+    {
+      "dimension": "query_language",
+      "value": "nde",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0,
+        "map_at_10": 1.0
+      }
+    },
+    {
+      "dimension": "query_language",
+      "value": "sna",
+      "count": 3,
+      "metrics": {
+        "recall_at_1": 0.6666666666666666,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.7777777777777777,
+        "ndcg_at_10": 0.8333333333333334,
+        "map_at_10": 0.7777777777777777
+      }
+    },
+    {
+      "dimension": "task",
+      "value": "retrieval",
+      "count": 13,
+      "metrics": {
+        "recall_at_1": 0.7692307692307693,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 0.8589743589743589,
+        "ndcg_at_10": 0.8946869041208814,
+        "map_at_10": 0.8589743589743589
+      }
+    }
+  ],
+  "warnings": [
+    "Synthetic infrastructure fixture; not evidence of language competence",
+    "Unreviewed text; linguistic validity is not established"
+  ]
+}

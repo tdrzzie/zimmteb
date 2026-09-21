@@ -14,9 +14,10 @@ chiShona, isiNdebele, and code-switched text.
 families and a public leaderboard are planned. Neither `zim-embed-small` nor
 `zim-reranker` exists as a trained release.
 
-**Benchmark results are forthcoming. No synthetic scores are reported as real measurements.**
-Local smoke runs produce actual measured scores on synthetic fixtures; these are
-infrastructure measurements, not representative benchmark evidence.
+**The first real-model CPU smoke run is complete.** Its scores are measured on
+synthetic fixtures and validate infrastructure, not representative language quality.
+See the [Phase 1 engineering report](docs/phase1-engineering-report.md) for verification
+details and commands. A reviewed linguistic benchmark remains future work.
 
 ## Why ZimMTEB
 
@@ -71,7 +72,7 @@ See [architecture](docs/architecture.md) and [upstream research](docs/research/u
 
 ## Installation and quick start
 
-Use Python 3.11+; Python 3.12 is the local target. Install
+Use Python 3.11–3.13; Python 3.12 is the local target. Install
 [uv](https://docs.astral.sh/uv/getting-started/installation/), then:
 
 ```sh
@@ -85,6 +86,11 @@ Alternatively, `python -m pip install -e '.[dev]'` installs without uv but does 
 consume the uv lockfile. No token is needed. Core dependencies include MTEB and
 Sentence Transformers; SONAR/Fairseq2 are not required. Training/reporting extras
 prepare later workflows, not finished features.
+
+The lockfile pins MTEB 2.21.0, Sentence Transformers 6.1.0 and PyTorch 2.8.0.
+Linux uv installs use the official CPU PyTorch index. CUDA users need a separate
+environment with a compatible CUDA PyTorch wheel; a frozen CPU environment does
+not become CUDA-capable merely by selecting `--device cuda`.
 
 ## Run a benchmark
 

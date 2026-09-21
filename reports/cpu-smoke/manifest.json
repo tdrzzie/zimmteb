@@ -1,0 +1,98 @@
+{
+  "run_id": "20260921T051049Z-f9694d9c",
+  "status": "complete",
+  "identity": "2e96927354958a8ca9d6b7c13c48b098da2f6f1a9793eb49ea4260db852bd928",
+  "config": {
+    "name": "ZimMTEBTinyRetrieval",
+    "version": "0.1.0",
+    "dataset": "tiny-synthetic",
+    "task": "retrieval",
+    "model": "multilingual-e5-small",
+    "device": "cpu",
+    "batch_size": 8,
+    "precision": "float32",
+    "seed": 42,
+    "split": "test",
+    "language": null,
+    "domain": null
+  },
+  "model": {
+    "id": "multilingual-e5-small",
+    "adapter": "sentence-transformers",
+    "model_name": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "mit",
+    "license_url": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+    "query_prefix": "query: ",
+    "document_prefix": "passage: ",
+    "normalize": true,
+    "max_length": 128,
+    "batch_size": 8,
+    "precision": "float32",
+    "trust_remote_code": false,
+    "notes": "Small multilingual baseline; prompts follow model card."
+  },
+  "local_model_checksum": null,
+  "dataset_checksum": "aaa7303c3cab917c70d9967a0f2f7af61351fbef0e012fde121411aa855b3566",
+  "manifest": {
+    "dataset_id": "tiny-synthetic",
+    "version": "0.1.0",
+    "languages": [
+      "eng",
+      "sna",
+      "nde",
+      "eng-sna-codeswitch",
+      "eng-nde-codeswitch"
+    ],
+    "task": "retrieval",
+    "domains": [
+      "agriculture",
+      "customer-support",
+      "education",
+      "financial-services",
+      "mobile-payments",
+      "public-information",
+      "technology-support",
+      "telecommunications"
+    ],
+    "splits": {
+      "test": 13
+    },
+    "license": "CC0-1.0",
+    "citation": "ZimMTEB contributors, synthetic infrastructure fixture v0.1.0",
+    "source": "original AI-drafted fixture; no external dataset incorporated",
+    "creation_method": "synthetic",
+    "human_review_level": "unreviewed",
+    "number_of_samples": 13,
+    "checksum": "aaa7303c3cab917c70d9967a0f2f7af61351fbef0e012fde121411aa855b3566",
+    "creation_date": "2026-09-20",
+    "benchmark_version": "0.1.0",
+    "documents": "../tiny-synthetic/documents.jsonl",
+    "queries": "../tiny-synthetic/queries.jsonl"
+  },
+  "device": "cpu",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "cpu_count": 32,
+    "ram_bytes": 16332025856,
+    "packages": {
+      "zimmteb": "0.1.0",
+      "mteb": "2.21.0",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.17.0",
+      "datasets": "5.0.1",
+      "torch": "2.8.0",
+      "numpy": "2.3.5",
+      "huggingface-hub": "1.32.0"
+    },
+    "cuda_available": false,
+    "cuda_version": null,
+    "gpu": null,
+    "git_commit": "4d2010c8a649e18bbe13dbfc7fba2bc0f88cec34",
+    "git_dirty": true
+  },
+  "implementation": "0.1.0",
+  "source_checksum": "b48c473c583d33bef2907f6f12f6c9ed8c3e1edca82c9b68e6b22052b3f01a5b"
+}

@@ -17,11 +17,14 @@ manifest and Markdown. `results validate` recomputes metrics and aggregates.
 `failures inspect` exposes mechanical errors, not inferred linguistic diagnoses.
 
 Timing separates model load, corpus encoding/indexing, query encoding and ranking.
+The run timer starts after upstream imports and excludes cold process startup.
 GPU timing synchronizes around encoding. Batched amortized query milliseconds are
 not production request latency. Cache hits are labeled and unsuitable for cold
 inference comparisons. RSS is sampled process memory; CUDA memory is PyTorch allocator
-peak, not total device use. Model disk size is explicitly unavailable, rather than
-estimated from a shared download cache. Warmup, repeated trials and isolated hardware
+peak, not total device use. Model disk size counts logical bytes in the selected
+local directory or cached revision snapshot, excluding other revisions. It includes
+auxiliary files and does not measure filesystem deduplication or a complete remote
+repository; it is null if that location is unavailable. Warmup, repeated trials and isolated hardware
 loads remain necessary for serious efficiency claims.
 
 `benchmark compare` performs a paired bootstrap only for matching benchmark/data
