@@ -19,6 +19,11 @@ synthetic fixtures and validate infrastructure, not representative language qual
 See the [Phase 1 engineering report](docs/phase1-engineering-report.md) for verification
 details and commands. A reviewed linguistic benchmark remains future work.
 
+**Phase 2 is in progress across all eight domains.** Directional retrieval,
+source-family leakage checks and review packets are implemented. Public-source
+candidates are documented; reviewed multilingual data is not yet released.
+See the [Phase 2 plan and workflow](docs/phase2-plan.md).
+
 ## Why ZimMTEB
 
 Global averages can conceal weak performance in underrepresented languages, local
@@ -127,8 +132,9 @@ CLI groups: `system`, `languages`, `domains`, `datasets`, `models`, `benchmark`,
 ## Tasks and baselines
 
 Implemented: dense retrieval, Recall@1/5/10/20, MRR@10, nDCG@10 and MAP@10.
-Planned: reranking, STS, classification and bitext/cross-lingual tasks with dedicated
-data. The current mixed corpus is not a validated cross-lingual benchmark.
+Directional retrieval is implemented; it requires explicit cross-language judgments.
+Planned: reranking, STS, classification and bitext tasks with dedicated data.
+The current mixed corpus is not a validated cross-lingual benchmark.
 
 | Configuration | Role | Status |
 |---|---|---|

@@ -16,6 +16,12 @@ Run output includes native MTEB scores, per-query rankings, sliced metrics, envi
 manifest and Markdown. `results validate` recomputes metrics and aggregates.
 `failures inspect` exposes mechanical errors, not inferred linguistic diagnoses.
 
+`--document-language` explicitly changes the candidate corpus to all documents in
+the selected language. Queries without a judged positive in that corpus are listed
+as excluded; remaining judgments are projected onto the target corpus. Reports and
+native task names distinguish this setting, and paired comparison rejects different
+target corpora. `--language` alone remains a query filter over the full corpus.
+
 Timing separates model load, corpus encoding/indexing, query encoding and ranking.
 The run timer starts after upstream imports and excludes cold process startup.
 GPU timing synchronizes around encoding. Batched amortized query milliseconds are

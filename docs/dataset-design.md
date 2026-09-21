@@ -19,6 +19,9 @@ It exports both JSON and Markdown and returns nonzero for errors. Length warning
 and translation-review warnings are heuristics. It cannot certify translation accuracy,
 natural switching, PII absence or semantic separation across languages.
 
-The current O(n²) leakage audit is intentionally small-data tooling. Future source
-and translation-family IDs, candidate indexing, bilingual review and adjudicated
-multi-positive judgments are prerequisites for larger benchmark releases.
+The current O(n²) leakage audit is intentionally small-data tooling. Phase 2 adds
+optional `source_id`, `source_document_id` and `translation_family_id` fields, with
+cross-split checks across all judgment types. New review packets require these IDs
+and bind approvals to dataset and record content. Candidate indexing, bilingual
+review and adjudicated multi-positive judgments remain prerequisites for larger
+benchmark releases. See the [Phase 2 workflow](phase2-plan.md).

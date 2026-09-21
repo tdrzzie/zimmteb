@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Phase 2 foundations
+
+- Target document-language retrieval, explicit missing-judgment coverage, and corpus comparison guards.
+- Source-document and translation-family leakage checks, including negative judgments.
+- Content-bound review packets and source-permission/attestation validation.
+- All-eight-domain pilot plan and public-source discovery inventory; no reviewed data release yet.
+
 ## 0.1.0 — Phase 1
 
 - MTEB 2.21.0 / Sentence Transformers 6.1.0 integration target.
