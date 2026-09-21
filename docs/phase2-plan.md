@@ -4,6 +4,10 @@ Status: **in progress**, started 21 September 2026. The user selected all eight
 domains and public sources; no licensed collection or speaker reviewers were supplied.
 This is not a v0.2 dataset release or a claim of completed linguistic review.
 
+An initial [local seed pilot](review/pilot-status.md) now contains 11 source excerpts
+and 17 proposed queries across all eight domains, with a volunteer review packet.
+This remains below the target coverage; no human reviews have been received.
+
 ## First implementation milestone
 
 - `benchmark run --document-language CODE` evaluates against every document in that

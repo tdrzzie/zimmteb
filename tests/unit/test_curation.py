@@ -106,6 +106,21 @@ def test_source_evidence_and_review_date(tiny):
     assert any("future-dated" in e for e in errors)
 
 
+def test_cross_language_judgments_require_document_language_review(tiny):
+    query = tiny.queries[0]
+    query.positive_document_ids = [
+        next(d.document_id for d in tiny.documents if d.language == "sna")
+    ]
+    query.negative_document_ids = []
+    query.hard_negative_document_ids = []
+    packet, catalog = prepared(tiny)
+    item = next(i for i in packet.items if i.record_type == "query" and i.record_id == query.id)
+    item.decision.languages_reviewed = ["eng"]
+    assert any("coverage incomplete" in e for e in check_packet(tiny, packet, catalog).errors)
+    item.decision.languages_reviewed = ["eng", "sna"]
+    assert check_packet(tiny, packet, catalog).valid
+
+
 def test_translation_family_leakage_without_lexical_overlap(tiny):
     left, right = tiny.queries[:2]
     left.split = "train"

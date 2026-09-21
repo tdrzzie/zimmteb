@@ -23,6 +23,8 @@ details and commands. A reviewed linguistic benchmark remains future work.
 source-family leakage checks and review packets are implemented. Public-source
 candidates are documented; reviewed multilingual data is not yet released.
 See the [Phase 2 plan and workflow](docs/phase2-plan.md).
+An [unreviewed public-source seed pilot](docs/review/pilot-status.md) is prepared locally.
+The [volunteer recruitment issue](https://github.com/tdrzzie/zimmteb/issues/1) is open.
 
 ## Why ZimMTEB
 

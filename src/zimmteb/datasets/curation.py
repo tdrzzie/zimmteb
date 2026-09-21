@@ -140,6 +140,20 @@ def check_packet(
         code = record.language if isinstance(record, Document) else record.query_language
         language = languages.get(code)
         required = set(language.code_switch_partners or [code]) if language else {code}
+        if isinstance(record, Query):
+            for document_id in (
+                record.positive_document_ids
+                + record.negative_document_ids
+                + record.hard_negative_document_ids
+            ):
+                document = records.get(("document", document_id))
+                if isinstance(document, Document):
+                    target = languages.get(document.language)
+                    required.update(
+                        target.code_switch_partners or [document.language]
+                        if target
+                        else [document.language]
+                    )
         source_language = record.metadata.get("source_language")
         if record.metadata.get("translation_method") not in {None, "none"} and source_language:
             required.add(source_language)

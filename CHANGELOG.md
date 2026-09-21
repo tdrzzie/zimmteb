@@ -2,6 +2,10 @@
 
 ## Unreleased — Phase 2 foundations
 
+- Prepared a local public-source seed pilot and volunteer review handoff; approvals remain pending.
+- Published a volunteer recruitment issue for chiShona and Northern isiNdebele review.
+- Require document-language coverage when reviewing cross-language relevance judgments.
+
 - Target document-language retrieval, explicit missing-judgment coverage, and corpus comparison guards.
 - Source-document and translation-family leakage checks, including negative judgments.
 - Content-bound review packets and source-permission/attestation validation.
