@@ -2,6 +2,11 @@
 
 ## Unreleased — Phase 2 foundations
 
+- Revised the local pilot to draft 2: explicit code-switch spans/counts, narrower
+  questions, marked source fragments, and exclusion of a weak Ndebele domain example.
+- Re-fetched all 11 original source revisions and verified excerpt matches and
+  displayed license links; recorded machine evidence without human approvals.
+
 - Prepared a local public-source seed pilot and volunteer review handoff; approvals remain pending.
 - Published a volunteer recruitment issue for chiShona and Northern isiNdebele review.
 - Require document-language coverage when reviewing cross-language relevance judgments.

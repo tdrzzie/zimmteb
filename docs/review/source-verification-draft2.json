@@ -1,0 +1,127 @@
+{
+  "method": "AI-assisted automated source binding check; no human permission approval",
+  "date": "2026-09-21",
+  "checks": [
+    {
+      "document_id": "d-eng-financial-services",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Financial_services&oldid=1372450881",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Financial_services&oldid=1372450881",
+      "sha256": "89a0db46c5e5c95dc57d4d4ca6b89fde51c0ea07a37fdb7fc6b6394fb112dc30",
+      "excerpt_match": true,
+      "revision_id": "1372450881",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-mobile-payments",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Mobile_payment&oldid=1375657051",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Mobile_payment&oldid=1375657051",
+      "sha256": "114dc76cab9c62afdc8e5a5389addd532a01b0348b707d8ca603e87309abca4e",
+      "excerpt_match": true,
+      "revision_id": "1375657051",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-telecommunications",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Telecommunications_in_Zimbabwe&oldid=1314254880",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Telecommunications_in_Zimbabwe&oldid=1314254880",
+      "sha256": "cc13c336c33797dc3b30f39c77488d7387b3b7108c393d90eea45f4453099083",
+      "excerpt_match": true,
+      "revision_id": "1314254880",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-agriculture",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Agriculture_in_Zimbabwe&oldid=1340114509",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Agriculture_in_Zimbabwe&oldid=1340114509",
+      "sha256": "3dc6c527dad06abbabc038004c36edf49f9e08d6e168ff5bed6e7f9d4f356a93",
+      "excerpt_match": true,
+      "revision_id": "1340114509",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-education",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Education_in_Zimbabwe&oldid=1349666255",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Education_in_Zimbabwe&oldid=1349666255",
+      "sha256": "d5a21c6ef2b3ff86ed4aa5273001ac4c2f53202aa9f2e3b686d64d6c7102217a",
+      "excerpt_match": true,
+      "revision_id": "1349666255",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-public-information",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=E-government&oldid=1365750723",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=E-government&oldid=1365750723",
+      "sha256": "09a8c1cf1706663447d723c1fd7ae98e519e31201354df5796f99188e8becca6",
+      "excerpt_match": true,
+      "revision_id": "1365750723",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-customer-support",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Customer_service&oldid=1375189785",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Customer_service&oldid=1375189785",
+      "sha256": "8c8c0808f2e0b1125a3b3a7d18bacba138cefc8f9c8aa00ff802a8101cf8a4a4",
+      "excerpt_match": true,
+      "revision_id": "1375189785",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-eng-technology-support",
+      "requested_url": "https://en.wikipedia.org/w/index.php?title=Technical_support&oldid=1374672744",
+      "status": 200,
+      "final_url": "https://en.wikipedia.org/w/index.php?title=Technical_support&oldid=1374672744",
+      "sha256": "c6662f32e57c3b628d852004ac9f1ee3db4c8bf71306125d7ccc5972661040b9",
+      "excerpt_match": true,
+      "revision_id": "1374672744",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-sna-agriculture",
+      "requested_url": "https://sn.wikipedia.org/w/index.php?title=Kurima&oldid=106136",
+      "status": 200,
+      "final_url": "https://sn.wikipedia.org/w/index.php?title=Kurima&oldid=106136",
+      "sha256": "158ed5625048ceb33e4b7a533656060187ff0fa8421b2eb738ea42f155ba11e8",
+      "excerpt_match": true,
+      "revision_id": "106136",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-sna-education",
+      "requested_url": "https://sn.wikipedia.org/w/index.php?title=Dzidzo&oldid=88982",
+      "status": 200,
+      "final_url": "https://sn.wikipedia.org/w/index.php?title=Dzidzo&oldid=88982",
+      "sha256": "79b6b920c34ab5dcefa78a21b7216de3ab2b549e58ac081a9a1bb514cd4fb126",
+      "excerpt_match": true,
+      "revision_id": "88982",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    },
+    {
+      "document_id": "d-nde-education",
+      "requested_url": "https://incubator.wikimedia.org/w/index.php?title=Wp/nd/IsiNdebele&oldid=5286176",
+      "status": 200,
+      "final_url": "https://incubator.wikimedia.org/w/index.php?title=Wp/nd/IsiNdebele&oldid=5286176",
+      "sha256": "ab3b84259183ec404ee27391b117411ff14e83ad0b5ad6dcd43daa1545309001",
+      "excerpt_match": true,
+      "revision_id": "5286176",
+      "revision_match": true,
+      "cc_by_sa_4_link": true
+    }
+  ]
+}

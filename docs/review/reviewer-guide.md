@@ -3,7 +3,7 @@
 ## Purpose and current status
 
 Review linguistic quality and proposed relevance judgments, not model scores.
-The seed pilot has 11 short public-source excerpts and 17 AI-drafted queries.
+The active seed pilot (draft 2) has 10 short public-source excerpts and 14 AI-drafted queries.
 All decisions are pending. It has no training split or approved benchmark release.
 The passages are intentionally brief; reviewers may recommend replacing them with
 longer, independently sourced and appropriately licensed material.
@@ -28,11 +28,12 @@ to JSON; volunteers do not need to edit code or structured files.
    encyclopedia content is automatically reliable or natural in local usage.
 2. Check spelling, grammar, meaning, dialect and register. Preserve legitimate
    variation; record the variety rather than silently standardizing it away.
-3. Decide whether its domain label is useful. The Northern Ndebele excerpt concerns
-   language itself; its education label is broad and needs explicit confirmation.
+3. Decide whether its domain label is useful. Draft 2 excludes the Northern Ndebele
+   language-description passage from the active corpus because it did not establish
+   education-domain coverage. Excluded records are not candidates for active judgments.
 4. Flag sensitive information, questionable licensing, inadequate context, stale
    statements or misleading truncation. The mobile-payment and telecommunications
-   excerpts stop before the end of the original sentence.
+   excerpts stop before the end of the original sentence, now shown with an ellipsis.
 
 ## Review each question and judgment
 
@@ -46,6 +47,12 @@ to JSON; volunteers do not need to edit code or structured files.
    Declare limitations. A language tag alone does not establish reviewer competence.
 5. Record `approved`, `needs-revision`, or `rejected` with a short explanation. Use
    `needs-revision` for uncertainty; the system does not require you to approve an item.
+
+Draft 2 proposes an answer-bearing relevance rule: a positive passage must support
+the requested answer; topical overlap alone is insufficient. Confirm this rule and
+apply it consistently across all candidates. Code-switch metadata now includes
+explicit AI-assigned spans, whitespace-token counts and a counting convention.
+Review those spans for borrowing, language assignment and naturalness.
 
 ## Recording and adjudication
 
